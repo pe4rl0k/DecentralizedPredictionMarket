@@ -1,0 +1,21 @@
+{
+  "name": "decentralized-prediction-market",
+  "version": "1.0.0",
+  "description": "A decentralized prediction market on Ethereum.",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test",
+    "dev": "lite-server"
+  },
+  "keywords": ["DApp", "Solidity", "Prediction Market"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^5.5.1",
+    "hardhat": "^2.6.4"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+}
