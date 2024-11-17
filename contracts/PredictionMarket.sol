@@ -19,6 +19,7 @@ contract PredictionMarket {
     event BetPlaced(uint indexed marketId, address indexed bettor, uint option);
     event WinningOptionDeclared(uint indexed marketId, uint option);
     event RewardClaimed(address indexed claimer, uint amount);
+    event MarketInfo(uint indexed marketId, address creator, uint deadline, uint winningOption, bool winningOptionSet);
 
     modifier isCreator(uint _marketId) {
         require(msg.sender == markets[_marketId].creator, "Not the market creator.");
@@ -105,6 +106,7 @@ contract PredictionMarket {
         uint winningOption
     ) {
         Market memory market = markets[_marketId];
+        emit MarketInfo(_marketId, market.creator, market.deadline, market.winningOption, market.winningOptionSet);
         return (market.title, market.options, market.deadline, market.creator, market.winningOptionSet, market.winningOption);
     }
 
