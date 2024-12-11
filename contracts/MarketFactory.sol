@@ -30,10 +30,12 @@ contract MarketFactory is Ownable {
 
     function removeMarket(address marketAddress) external onlyOwner {
         require(PredictionMarket(marketAddress).distributeRewards(), "Distribution of rewards failed.");
+
         for (uint256 i = 0; i < activeMarkets.length; i++) {
             if (activeMarkets[i] == marketAddress) {
                 activeMarkets[i] = activeMarkets[activeMarkets.length - 1];
                 activeMarkets.pop();
+
                 emit MarketRemoved(marketAddress);
                 break;
             }
@@ -45,6 +47,7 @@ contract MarketFactory is Ownable {
         while (i < activeMarkets.length) {
             if (!PredictionMarket(activeMarkets[i]).isActive()) {
                 emit MarketRemoved(activeMarkets[i]);
+
                 activeMarkets[i] = activeMarkets[activeMarkets.length - 1];
                 activeMarkets.pop();
             } else {
